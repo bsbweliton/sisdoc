@@ -10,12 +10,10 @@ use Zend\Form\Form;
 // import Element
 use Zend\Form\Element;
 use Zend\InputFilter\InputFilterProviderInterface;
-use DoctrineORMModule\Stdlib\Hydrator\DoctrineEntity as DoctrineHydrator;
-use DoctrineORMModule\Stdlib\Hydrator\DoctrineORMModule\Stdlib\Hydrator;
 use Doctrine\ORM\EntityManager;
 
 
-class DocumentoForm extends Form implements InputFilterProviderInterface
+class DocumentoForm extends Form 
 {
 
     public function __construct(EntityManager $entityManager)
@@ -36,7 +34,11 @@ class DocumentoForm extends Form implements InputFilterProviderInterface
         		}
         	}
         } */ 
-        $this->setHydrator(new DoctrineHydrator($entityManager));     
+       /* $entity = new \Documento\Entity\Documento();
+        
+        $hydrator = new DoctrineHydrator($entityManager, $entity);        
+        
+        $this->setHydrator($hydrator);*/  
         
         $documentoFieldset = new DocumentoFieldset($entityManager);
         $documentoFieldset->setUseAsBaseFieldset(true);

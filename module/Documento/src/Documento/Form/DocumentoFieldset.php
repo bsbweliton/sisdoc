@@ -21,7 +21,7 @@ class DocumentoFieldset extends Fieldset implements InputFilterProviderInterface
 		
 		$hydrator = new DoctrineHydrator($entityManager, $entity);
 		
-		$this->setHydrator($hydrator);
+		$this->setHydrator($hydrator);		
 		
 		$receptorFieldset = new ReceptorFieldset($entityManager);
 		

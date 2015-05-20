@@ -8,6 +8,8 @@ use Zend\Form\Form;
 use Zend\Form\Annotation\AnnotationBuilder;
 use LosBase\Entity\EntityManagerAwareTrait;
 use Documento\Form\DocumentoForm;
+use DoctrineORMModule\Stdlib\Hydrator\DoctrineEntity as DoctrineHydrator;
+use DoctrineORMModule\Stdlib\Hydrator\DoctrineORMModule\Stdlib\Hydrator;
 
 
 
@@ -17,7 +19,7 @@ class CrudController extends AbstractCrudController
 	{
 		$this->insertCssDoc($this);
 		$this->insertJScriptGeraDoc($this);			    
-	    $form = new DocumentoForm($this->getEntityManager());	   
+	    $form = new DocumentoForm($this->getEntityManager());	 
 		
 		$classe = $this->getEntityClass();
 		$entity = new $classe();
