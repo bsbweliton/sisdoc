@@ -21,10 +21,10 @@ class CrudController extends AbstractCrudController
 		
 		$classe = $this->getEntityClass();
 		$entity = new $classe();
-		$form->bind($entity);				
+		$form->bind($entity);						
 		
 		$redirectUrl = $this->url()->fromRoute($this->getActionRoute(), [], true);
-		$prg = $this->fileprg($form, $redirectUrl, true);
+		//$prg = $this->fileprg($form, $redirectUrl, true);
 				
 		return [
 				'entityForm' => $form,

@@ -9,28 +9,20 @@ namespace Documento\Form;
 use Zend\Form\Form;
 // import Element
 use Zend\Form\Element;
-use Zend\Mvc\Controller\AbstractActionController;
-use Zend\Form\Annotation\AnnotationBuilder;
+use Zend\InputFilter\InputFilterProviderInterface;
 use DoctrineORMModule\Stdlib\Hydrator\DoctrineEntity as DoctrineHydrator;
 use DoctrineORMModule\Stdlib\Hydrator\DoctrineORMModule\Stdlib\Hydrator;
 use Doctrine\ORM\EntityManager;
 
-class DocumentoForm extends Form
+
+class DocumentoForm extends Form implements InputFilterProviderInterface
 {
 
     public function __construct(EntityManager $entityManager)
     {
-        parent::__construct("documentoForm");                
+        parent::__construct("documentoForm");                        
         
-        $builder = new AnnotationBuilder();
-        
-        $entity = new \Documento\Entity\Documento();
-        
-        $hydrator = new DoctrineHydrator($entityManager, $entity);
-        
-        $this->setHydrator($hydrator);
-        
-        $fieldset = $builder->createForm( $entity ) ;
+        /*$fieldset = $builder->createForm( $entity ) ;
         
         foreach ($fieldset->getElements() as $element) {
         	if (method_exists($element, 'setObjectManager')) {
@@ -43,15 +35,13 @@ class DocumentoForm extends Form
         			$hasEntity = true;
         		}
         	}
-        }        
-
-        $fieldset->setName("documento");
+        } */ 
+        $this->setHydrator(new DoctrineHydrator($entityManager));     
         
-        $fieldset->setObject($entity);
-
-        $fieldset->setUseAsBaseFieldset(true);
+        $documentoFieldset = new DocumentoFieldset($entityManager);
+        $documentoFieldset->setUseAsBaseFieldset(true);
         
-        $this->add( $fieldset );        
+        $this->add($documentoFieldset);        
         
 		$this->add(array(
 				'type' => 'Hidden', # ou 'type' => 'ZendFormElementHidden'
@@ -187,5 +177,15 @@ class DocumentoForm extends Form
 				),
 		));		
     }
+    /**
+     * Define InputFilterSpecifications
+     *
+     * @access public
+     * @return array
+     */
+    public function getInputFilterSpecification()
+    {
+    	return array();
+    }    
 
 }
