@@ -14,9 +14,29 @@ class ReceptorFieldset extends Fieldset implements InputFilterProviderInterface
 	{
 		parent::__construct("receptor");
 		
+		$entity = new \Documento\Entity\Receptor();
+		
 		$builder = new AnnotationBuilder();
 		
-		$entity = new \Documento\Entity\Receptor();
+		$form = $builder->createForm($entity);
+		
+		foreach ($form->getElements() as $element) {
+			if (method_exists($element, 'setObjectManager')) {
+				$element->setObjectManager($entityManager);
+				$hasEntity = true;
+			} elseif (method_exists($element, 'getProxy')) {
+				$proxy = $element->getProxy();
+				if (method_exists($proxy, 'setObjectManager')) {
+					$proxy->setObjectManager($entityManager);
+					$hasEntity = true;
+				}
+			}
+			$this->add($element);
+		}
+
+		$enderecoDestinoFieldset = new EnderecoDestinoFieldset($entityManager);
+		
+		$this->add($enderecoDestinoFieldset);
 		
 		$hydrator = new DoctrineHydrator($entityManager, $entity);
 		

@@ -10,7 +10,10 @@ use Zend\Form\Form;
 // import Element
 use Zend\Form\Element;
 use Zend\InputFilter\InputFilterProviderInterface;
+use Zend\Form\Annotation\AnnotationBuilder;
 use Doctrine\ORM\EntityManager;
+use DoctrineORMModule\Stdlib\Hydrator\DoctrineEntity as DoctrineHydrator;
+use DoctrineORMModule\Stdlib\Hydrator\DoctrineORMModule\Stdlib\Hydrator;
 
 
 class DocumentoForm extends Form 
@@ -34,16 +37,56 @@ class DocumentoForm extends Form
         		}
         	}
         } */ 
-       /* $entity = new \Documento\Entity\Documento();
+        //$this->setName("documento");
         
-        $hydrator = new DoctrineHydrator($entityManager, $entity);        
+        $entity = new \Documento\Entity\Documento();
+        
+        $this->setUseAsBaseFieldset(true);
+        
+        $builder = new AnnotationBuilder();
+        
+        $form = $builder->createForm($entity);
+        
+        foreach ($form->getElements() as $element) {
+        	if (method_exists($element, 'setObjectManager')) {
+        		$element->setObjectManager($entityManager);
+        		$hasEntity = true;
+        	} elseif (method_exists($element, 'getProxy')) {
+        		$proxy = $element->getProxy();
+        		if (method_exists($proxy, 'setObjectManager')) {
+        			$proxy->setObjectManager($entityManager);
+        			$hasEntity = true;
+        		}
+        	}
+        	$this->add($element);
+        	die(var_dump($this->getInputFilter()));
+        }        
+        
+        /*$hydrator = new DoctrineHydrator($entityManager, $entity);        
         
         $this->setHydrator($hydrator);*/  
         
-        $documentoFieldset = new DocumentoFieldset($entityManager);
-        $documentoFieldset->setUseAsBaseFieldset(true);
-        
-        $this->add($documentoFieldset);        
+		$hydrator = new DoctrineHydrator($entityManager, $entity);
+		
+		$this->setHydrator($hydrator);		
+		
+		$receptorFieldset = new ReceptorFieldset($entityManager);
+		
+		$this->add($receptorFieldset);
+		
+		$autoridadeReceptorFieldset = new AutoridadeReceptorFieldset($entityManager);
+		
+		$this->add($autoridadeReceptorFieldset);	
+				              		
+		
+		$receptorFieldset = new ReceptorFieldset($entityManager);
+		
+		$this->add($receptorFieldset);
+		
+		$autoridadeReceptorFieldset = new AutoridadeReceptorFieldset($entityManager);
+		
+		$this->add($autoridadeReceptorFieldset);
+		      
         
 		$this->add(array(
 				'type' => 'Hidden', # ou 'type' => 'ZendFormElementHidden'

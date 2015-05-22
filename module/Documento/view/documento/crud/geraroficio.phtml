@@ -24,7 +24,7 @@ $form->setAttribute('class', 'formular');
 					<div class="row">
 						<div class="col-sm-6">
 							<div class="form-group">
-								<?php echo $this->formRow($form->get("documento")->get("idLotacao")) ?>
+								<?php echo $this->formRow($form->get("idLotacao")) ?>
 							</div>	
 						</div>
 					</div>				
@@ -40,24 +40,24 @@ $form->setAttribute('class', 'formular');
 					<div class='row' id="entidade1">
 						<div class="col-sm-6" id="entir">
 							<div class="form-group">
-								<?php echo $this->formRow($form->get("documento")->get("receptor")->get("nomeentidade")) ?>
+								<?php echo $this->formRow($form->get("receptor")->get("nomeentidade")) ?>
 							</div>	
 						</div>
 						<div class="col-sm-6" id="crecept">
 							<div class="form-group">
-								<?php echo $this->formRow($form->get("documento")->get("autoridadeReceptor")->get("cargoautoridade")) ?>
+								<?php echo $this->formRow($form->get("autoridadeReceptor")->get("cargoautoridade")) ?>
 							</div>	
 						</div>					
 					</div>
 					<div class='row' id="entidade2">
 						<div class="col-sm-6" id="nrecept">
 							<div class="form-group">
-								<?php echo $this->formRow($form->get("documento")->get("autoridadeReceptor")->get("nomeautoridade")) ?>
+								<?php echo $this->formRow($form->get("autoridadeReceptor")->get("nomeautoridade")) ?>
 							</div>	
 						</div>
 						<div class="col-sm-6" id="grecept">
 							<div class="form-group">
-								<?php echo $this->formRow($form->get("documento")->get("autoridadeReceptor")->get("genero")) ?>
+								<?php echo $this->formRow($form->get("autoridadeReceptor")->get("genero")) ?>
 							</div>	
 						</div>					
 					</div>
@@ -66,12 +66,12 @@ $form->setAttribute('class', 'formular');
 					<div class="row">
 						<div class="col-sm-6">
 							<div class="form-group">
-								<?php echo $this->formRow($form->get("documento")->get("receptor")->get("receptorEnderecoDestino")->get("logradouro")) ?>
+								<?php echo $this->formRow($form->get("receptor")->get("receptorEnderecoDestino")->get("logradouro")) ?>
 							</div>	
 						</div>
 						<div class="col-sm-6">
 							<div class="form-group">
-								<?php echo $this->formRow($form->get("documento")->get("receptor")->get("receptorEnderecoDestino")->get("cep")) ?>								
+								<?php echo $this->formRow($form->get("receptor")->get("receptorEnderecoDestino")->get("cep")) ?>								
 							</div>	
 						</div>						
 					</div>				
@@ -79,12 +79,12 @@ $form->setAttribute('class', 'formular');
 					<div class="row">
 						<div class="col-sm-6">
 							<div class="form-group">
-								<?php echo $this->formRow($form->get("documento")->get("receptor")->get("receptorEnderecoDestino")->get("cidade")) ?>															
+								<?php echo $this->formRow($form->get("receptor")->get("receptorEnderecoDestino")->get("cidade")) ?>															
 							</div>	
 						</div>
 						<div class="col-sm-6">
 							<div class="form-group">
-								<?php echo $this->formRow($form->get("documento")->get("receptor")->get("receptorEnderecoDestino")->get("estado")) ?>
+								<?php echo $this->formRow($form->get("receptor")->get("receptorEnderecoDestino")->get("estado")) ?>
 							</div>	
 						</div>						
 					</div>
@@ -93,24 +93,24 @@ $form->setAttribute('class', 'formular');
 					<div class='row'>
 						<div class="col-sm-6">
 							<div class="form-group">
-								<?php echo $this->formRow($form->get("documento")->get("assunto")) ?>
+								<?php echo $this->formRow($form->get("assunto")) ?>
 							</div>	
 						</div>
 						<div class="col-sm-6">
 							<div class="form-group">
-								<?php echo $this->formRow($form->get("documento")->get("referencia")) ?>								
+								<?php echo $this->formRow($form->get("referencia")) ?>								
 							</div>	
 						</div>							
 					</div>
 					<div class='row'>
 						<div class="col-sm-6">
 							<div class="form-group">
-							    <?php echo $this->formRow($form->get("documento")->get("vocativo")) ?>								
+							    <?php echo $this->formRow($form->get("vocativo")) ?>								
 							</div>	
 						</div>
 						<div class="col-sm-6">
 							<div class="form-group">
-								<?php echo $this->formRow($form->get("documento")->get("enderecamento")) ?>
+								<?php echo $this->formRow($form->get("enderecamento")) ?>
 							</div>	
 						</div>							
 					</div>				
@@ -138,7 +138,7 @@ $form->setAttribute('class', 'formular');
 					<div class='row'>
 						<div class="col-sm-6">
 							<div class="form-group">
-								<?php echo $this->formElement($form->get("documento")->get("fecho")) ?>
+								<?php echo $this->formElement($form->get("fecho")) ?>
 							</div>	
 						</div>	
 					</div>

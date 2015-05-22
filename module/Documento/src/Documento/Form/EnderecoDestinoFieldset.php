@@ -8,13 +8,13 @@ use Doctrine\ORM\EntityManager;
 use DoctrineORMModule\Stdlib\Hydrator\DoctrineEntity as DoctrineHydrator;
 use DoctrineORMModule\Stdlib\Hydrator\DoctrineORMModule\Stdlib\Hydrator;
 
-class AutoridadeReceptorFieldset extends Fieldset implements InputFilterProviderInterface
+class EnderecoDestinoFieldset extends Fieldset implements InputFilterProviderInterface
 {
 	public function __construct(EntityManager $entityManager)
 	{
-		parent::__construct("autoridadeReceptor");
+		parent::__construct("receptorEnderecoDestino");
 		
-		$entity = new \Documento\Entity\AutoridadeReceptor();
+		$entity = new \Documento\Entity\EnderecoDestino();
 		
 		$builder = new AnnotationBuilder();
 		
@@ -32,7 +32,7 @@ class AutoridadeReceptorFieldset extends Fieldset implements InputFilterProvider
 				}
 			}
 			$this->add($element);
-		}		
+		}					
 		
 		$hydrator = new DoctrineHydrator($entityManager, $entity);
 		
